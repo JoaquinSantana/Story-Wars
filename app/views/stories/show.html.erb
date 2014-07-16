@@ -1,4 +1,76 @@
+<% if @story.created_at >= 1.hour.ago %>
+    <p>Round 1</p>
+    <% round = 1 %>
+    <% vote = false %>
+<% elsif @story.created_at < 1.hour.ago && @story.created_at > 2.hour.ago %>
+    <p>Round 1: vote</p>
+    <% round = 1 %>
+    <% vote = true %>
+<% elsif @story.created_at < 2.hour.ago && @story.created_at > 3.hour.ago %>
+    <p>Round 2</p>
+    <% round = 2 %>
+    <% vote = false %>
+<% elsif @story.created_at < 3.hour.ago && @story.created_at > 4.hour.ago %>
+    <p>Round 2</p>
+    <% round = 2 %>
+    <% vote = true %>
+<% elsif @story.created_at < 4.hour.ago && @story.created_at > 5.hour.ago %>
+    <p>Round 3</p>
+    <% round = 3 %>
+    <% vote = false %>
+<% elsif @story.created_at < 5.hour.ago && @story.created_at > 6.hour.ago %>
+    <p>Round 3</p>
+    <% round = 3 %>
+    <% vote = true %>
+<% elsif @story.created_at < 6.hour.ago && @story.created_at > 7.hour.ago %>
+    <p>Round 4</p>
+    <% round = 4 %>
+    <% vote = false %>
+<% elsif @story.created_at < 7.hour.ago && @story.created_at > 8.hour.ago %>
+    <p>Round 4</p>
+    <% round = 4 %>
+    <% vote = true %>
+<% elsif @story.created_at < 8.hour.ago && @story.created_at > 9.hour.ago %>
+    <p>Round 5</p>
+    <% round = 5 %>
+    <% vote = false %>
+<% elsif @story.created_at < 9.hour.ago && @story.created_at > 10.hour.ago %>
+    <p>Round 5</p>
+    <% round = 5 %>
+    <% vote = true %>
+<% elsif @story.created_at < 10.hour.ago && @story.created_at > 11.hour.ago %>
+    <p>Round 6</p>
+    <% round = 6 %>
+    <% vote = false %>
+<% elsif @story.created_at < 11.hour.ago && @story.created_at > 12.hour.ago %>
+    <p>Round 6</p>
+    <% round = 6 %>
+    <% vote = true %>
+<% elsif @story.created_at < 12.hour.ago && @story.created_at > 13.hour.ago %>
+    <p>Round 7</p>
+    <% round = 7 %>
+    <% vote = false %>
+<% elsif @story.created_at < 13.hour.ago && @story.created_at > 14.hour.ago %>
+    <p>Round 7</p>
+    <% round = 7 %>
+    <% vote = true %>
+<% elsif @story.created_at < 14.hour.ago && @story.created_at > 15.hour.ago %>
+    <p>Round 8</p>
+    <% round = 8 %>
+    <% vote = false %>
+<% elsif @story.created_at < 15.hour.ago && @story.created_at > 16.hour.ago %>
+    <p>Round 8</p>
+    <% round = 8 %>
+    <% vote = true %>
+<% end %>
+
+
 <p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @story.title %>
+</p>
 
 <p>
   <strong>Content:</strong>
@@ -9,6 +81,69 @@
   <strong>User:</strong>
   <%= @story.user_id %>
 </p>
+
+<hr>
+
+<h2>Chapters</h2>
+<% maxVotes = 0 %>
+<% chapterText = "" %>
+<% chapterAuthor = "" %>
+
+<% @story.chapters.each do |chapter| %>
+  <% if chapter.votes.count > maxVotes %>
+    <% maxVotes = chapter.votes.count %>
+    <% chapterText = chapter.body %>
+    <% chapterAuthor = chapter.author %>
+  <% end %>
+  Votes: <%= maxVotes %>
+  <p>
+    <strong>Round:</strong>
+    <%= chapter.round %>
+  </p>
+
+  <p>
+    <strong>Author:</strong>
+    <%= chapter.author %>
+  </p>
+ 
+  <p>
+    <strong>Chapter:</strong>
+    <%= chapter.body %>
+  </p>
+  <p><%= pluralize(chapter.votes.count, "vote") %></p>
+    
+    <%= chapter.round %>
+    <%= round %>
+    <% if vote == true %>
+        <p><%= button_to 'Vote', upvote_chapter_path(chapter), method: :post %></p>
+    <% end %>
+
+    <hr>
+<% end %>
+
+<%= time_ago_in_words(@story.created_at) %><br>
+<%= chapterText %><br>
+<%= chapterAuthor %>
+
+<% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false %>
+    <h2>Add a chapter:</h2>
+    <%= form_for([@story, @story.chapters.build]) do |f| %>
+      <p>
+        <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
+      </p>
+      <p>
+        <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.name %>">
+      </p>
+      <p>
+        <%= f.label :body %><br>
+        <%= f.text_area :body %>
+      </p>
+      <p>
+        <%= f.submit %>
+      </p>
+    <% end %>
+<% end %>
+
 
 <%= link_to 'Edit', edit_story_path(@story) %> |
 <%= link_to 'Back', stories_path %>

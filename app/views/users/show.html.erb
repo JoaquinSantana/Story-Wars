@@ -12,3 +12,13 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+
+<div class="span8">
+    <% if @user.stories.any? %>
+        <h3>Stories (<%= @user.stories.count %>)</h3>
+        <ol>
+            <%= render @user.stories %>
+        </ol>
+    <% end %>
+</div>
