@@ -861,3 +861,10 @@ th {
     margin-left: 0%;
   }
 }
+
+
+@media (max-width: 520px) {
+    .hide-xs {
+        display: none;
+    }
+}

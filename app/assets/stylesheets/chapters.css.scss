@@ -22,3 +22,16 @@
 .chapterHeadline {
     margin-top: 30px;
 }
+
+.chapterInfo {
+    color: black;
+    margin-bottom: 20px;
+    float: right;
+}
+
+@media (max-width: 520px) {
+    .chapterInfo {
+        float: left;
+        display: block;
+    }
+}

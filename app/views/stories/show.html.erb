@@ -83,9 +83,8 @@
             <% end %>
             <% chosenChapters.each do |chosenChapter| %>
                 <% if chosenChapter.nil? == false %>
-                    <%= chosenChapter.body %>
-                    <%= chosenChapter.author %>
-                    <%= chosenChapter.round %>
+                    <span class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.author.name %></a></span>
+                    <p class="storyContent"><%= chosenChapter.body %></p>
                 <% end %>
             <% end %>
         </div>
@@ -124,7 +123,7 @@
             <p>In the next round, all readers can vote on their favorite chapter</p>
             <%= form_for([@story, @story.chapters.build]) do |f| %>
                 <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
-                <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.name %>">
+                <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user %>">
                 <%= f.text_area :body, placeholder: "Continue the story" %>
                 <div class="pull-right"><%= f.submit %></div>
             <% end %>

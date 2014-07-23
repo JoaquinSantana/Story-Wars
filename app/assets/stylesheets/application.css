@@ -50,6 +50,12 @@ ul {
     padding: 0;
 }
 
+@media (max-width: 520px) {
+    h1 {
+        font-size: 28px;
+    }
+}
+
 
 /* Buttons */
 
@@ -175,6 +181,12 @@ textarea {
 .logo img {
     float: left;
     height: 50px;
+}
+
+@media (max-width: 355px) {
+    .logo img {
+        width: 50px;
+    }
 }
 
 .navbar .avatar {

@@ -6,8 +6,8 @@
         <ul class="primaryList">
             <% @stories.each do |story| %>
                 <li>
-                    <%= link_to(story) do %>
-                        <span class="primaryHeadline"><%= story.title %></span>
+                    <%= link_to(story, class: "primaryHeadline") do %>
+                        <span><%= story.title %></span>
                     <% end %>
                 </li>
             <% end %>
