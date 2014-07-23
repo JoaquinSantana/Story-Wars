@@ -16,6 +16,7 @@ class ChaptersController < ApplicationController
     def upvote
         @chapter = Chapter.find(params[:id])
         @chapter.votes.create
+        redirect_to(:back)
     end
  
     private

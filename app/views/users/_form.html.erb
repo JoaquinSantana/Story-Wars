@@ -10,20 +10,18 @@
       </ul>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.label :email %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="col-md-5 col-xs-12">
+        <div class="field">
+            <%= f.text_field :name, placeholder: "Name" %>
+        </div>
+        <div class="field">
+            <%= f.text_field :email, placeholder: "Email" %>
+        </div>
+        <div class="field">
+            <%= f.password_field :password, placeholder: "Password" %>
+        </div>
+        <div class="actions pull-right">
+            <%= f.submit %>
+        </div>
+    </div>
 <% end %>

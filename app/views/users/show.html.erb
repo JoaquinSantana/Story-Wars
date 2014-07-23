@@ -1,24 +1,39 @@
-<p id="notice"><%= notice %></p>
-
-<h1>
-    <%= gravatar_for @user %>
-    <%= @user.name %>
-</h1>
-
-<p>
-    <strong>Email:</strong>
-    <%= @user.email %>
-</p>
-
-<%= link_to 'Edit', edit_user_path(@user) %> |
-<%= link_to 'Back', users_path %>
+<div class="pageContainer">
+    <div class="container">    
+        <p id="notice"><%= notice %></p>
 
 
-<div class="span8">
-    <% if @user.stories.any? %>
-        <h3>Stories (<%= @user.stories.count %>)</h3>
-        <ol>
-            <%= render @user.stories %>
-        </ol>
-    <% end %>
+        
+        <div class="userProfile">
+            <%= gravatar_for @user %>
+            <h1 class="userHeadline">
+                <%= @user.name %>
+                <span class="userEmail"><%= @user.email %></span>
+            </h1>
+            <div class="userButtons pull-right">
+                <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-inverse" %>
+                <%= link_to "Sign out", logout_path, method: "delete", class: "btn marginLeft" %>
+            </div>
+        </div>
+
+        <!-- 
+        <% if @user.stories.any? %>
+            <h3>Stories (<%= @user.stories.count %>)</h3>
+            <ol>
+                <%= render @user.stories %>
+            </ol>
+        <% end %> -->
+
+
+        <ul class="primaryList">
+            <% @user.stories.each do |story| %>
+                <li>
+                    <%= link_to(story) do %>
+                        <span class="primaryHeadline"><%= story.title %></span>
+                    <% end %>
+                </li>
+            <% end %>
+        </ul>
+
+    </div>
 </div>
