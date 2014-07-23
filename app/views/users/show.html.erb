@@ -10,10 +10,12 @@
                 <%= @user.name %>
                 <span class="userEmail"><%= @user.email %></span>
             </h1>
-            <div class="userButtons pull-right">
-                <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-inverse" %>
-                <%= link_to "Sign out", logout_path, method: "delete", class: "btn marginLeft" %>
-            </div>
+            <% if current_user == @user %>  
+                <div class="userButtons pull-right">
+                    <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-inverse" %>
+                    <%= link_to "Sign out", logout_path, method: "delete", class: "btn marginLeft" %>
+                </div>
+            <% end %>
         </div>
 
         <!-- 

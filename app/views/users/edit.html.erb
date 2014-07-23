@@ -1,11 +1,13 @@
 <div class="pageContainer">
-    <div class="container">  
-        <h1>Editing user</h1>
-        <div class="userProfile">
-            <%= gravatar_for @user %>
-            <a href="http://gravatar.com/emails" class="btn btn-inverse userImageBtn">Change image with Gravatar</a>
-        </div>
+    <div class="container">
+        <% if current_user == @user %>  
+            <h1>Editing user</h1>
+            <div class="userProfile">
+                <%= gravatar_for @user %>
+                <a href="http://gravatar.com/emails" class="btn btn-inverse userImageBtn">Change image with Gravatar</a>
+            </div>
 
-        <%= render 'form' %>
+            <%= render 'form' %>
+        <% end %>
     </div>
 </div>
