@@ -47,7 +47,6 @@
     <% round = 9 %>
     <% vote = true %>
 <% end %>
-
 <div class="pageContainer whitePageContainer">
     <div class="container">  
         <p id="notice"><%= notice %></p>
@@ -63,8 +62,6 @@
 
         <% maxVotes = 0 %>
         <% chosenChapterRound = "" %>
-        <% chapterText = "" %>
-        <% chapterAuthor = "" %>
         <% chosenChapters = [] %>
         <%-#= time_ago_in_words(@story.created_at) -%>
         <div>
@@ -83,7 +80,7 @@
             <% end %>
             <% chosenChapters.each do |chosenChapter| %>
                 <% if chosenChapter.nil? == false %>
-                    <span class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.author.name %></a></span>
+                    <span class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.authorname %></a></span>
                     <p class="storyContent"><%= chosenChapter.body %></p>
                 <% end %>
             <% end %>
@@ -123,7 +120,8 @@
             <p>In the next round, all readers can vote on their favorite chapter</p>
             <%= form_for([@story, @story.chapters.build]) do |f| %>
                 <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
-                <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user %>">
+                <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.id %>">
+                <input id="chapter_authorname" name="chapter[authorname]" type="hidden" value="<%= current_user.name %>">
                 <%= f.text_area :body, placeholder: "Continue the story" %>
                 <div class="pull-right"><%= f.submit %></div>
             <% end %>

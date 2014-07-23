@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716192107) do
+ActiveRecord::Schema.define(version: 20140723154333) do
 
   create_table "chapters", force: true do |t|
     t.string   "round"
@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 20140716192107) do
     t.integer  "story_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "authorname"
   end
 
   add_index "chapters", ["story_id"], name: "index_chapters_on_story_id"
