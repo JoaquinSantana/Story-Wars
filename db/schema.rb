@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140723154333) do
+ActiveRecord::Schema.define(version: 20140723183442) do
 
   create_table "chapters", force: true do |t|
     t.string   "round"
@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20140723154333) do
   add_index "chapters", ["story_id"], name: "index_chapters_on_story_id"
 
   create_table "stories", force: true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
