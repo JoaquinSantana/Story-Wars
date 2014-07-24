@@ -47,6 +47,7 @@
     <% round = 9 %>
     <% vote = true %>
 <% end %>
+
 <div class="pageContainer whitePageContainer">
     <div class="container">  
         <p id="notice"><%= notice %></p>
@@ -90,11 +91,18 @@
 </div>
 
 <div class="contentContainer">
-    <% if vote == true %>
-        <div class="container">
-             <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
-
-
+    <div class="container">
+        <% if @story.timeLeft != false %>
+            Time left:
+            <div id="clock"></div>
+            <script>
+                $('#clock').countdown('<%= @story.timeLeft %>').on('update.countdown', function(event) {
+                    var $this = $(this).html(event.strftime('<span>%M</span> min'));
+                });
+            </script>
+        <% end %>
+        <% if vote == true %>
+            <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
             <% @story.chapters.each do |chapter| %>
                 <% if round.to_s == chapter.round %>
                     <div class="voteChapter-container">
@@ -111,10 +119,7 @@
                     </div>
                 <% end %>
             <% end %>
-        </div>
-    <% end %>
-
-    <div class="container">
+        <% end %>
         <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false && signed_in? %>
             <h2 class="chapterHeadline">New chapter</h2>
             <p>In the next round, all readers can vote on their favorite chapter</p>
@@ -126,6 +131,5 @@
                 <div class="pull-right"><%= f.submit %></div>
             <% end %>
         <% end %>
-
     </div>
 </div>
