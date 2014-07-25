@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).on('ready page:load', function() {
     var clock = $('#clock');
     // init jquery.countdown
     clock.countdown(clock.data("time")).on('update.countdown', function(event) {
