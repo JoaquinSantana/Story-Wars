@@ -97,7 +97,9 @@
             Time left:
             <div id="clock"></div>
             <script>
+                console.log("hello");
                 $('#clock').countdown('<%= @story.timeLeft %>').on('update.countdown', function(event) {
+                    console.log("inside of countdown");
                     var $this = $(this).html(event.strftime('<span>%M</span> min'));
                 });
             </script>
