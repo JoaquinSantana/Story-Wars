@@ -95,14 +95,7 @@
         <%= @story.timeLeft %>
         <% if @story.timeLeft != false %>
             Time left:
-            <div id="clock"></div>
-            <script>
-                console.log("hello");
-                $('#clock').countdown('<%= @story.timeLeft %>').on('update.countdown', function(event) {
-                    console.log("inside of countdown");
-                    var $this = $(this).html(event.strftime('<span>%M</span> min'));
-                });
-            </script>
+            <div id="clock" data-time="<%= @story.timeLeft %>"></div>
         <% end %>
         <% if vote == true %>
             <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
