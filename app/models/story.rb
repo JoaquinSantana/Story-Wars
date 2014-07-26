@@ -16,4 +16,14 @@ class Story < ActiveRecord::Base
             timeLeft = false
         end
     end
+
+    def mostVoted
+        allStories = Story.all
+        allStories.each do |story|
+            votes = 0
+            story.chapters.each do |chapter|
+                votes = votes + chapter.votes.count
+            end
+        end
+    end
 end
