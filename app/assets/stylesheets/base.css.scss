@@ -155,6 +155,9 @@ textarea {
                 text-align: center;
                 margin-left: 0;
                 margin-top: 30px;
+                &.last {
+                    margin-bottom: 15px;
+                }
             }
         }
     }
