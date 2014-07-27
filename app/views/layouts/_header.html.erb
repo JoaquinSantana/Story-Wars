@@ -3,16 +3,17 @@
     <div class="container">
         <!-- <%= link_to "Story Wars", root_path, id: "logo", class: "logo" %> -->
         <a href="/" class="logo" title="Story Wars">
-            <%= image_tag "story-wars-logotype-text-white_4.png" %>
+            <%= image_tag "story-wars-logotype-text-white.png" %>
         </a>
         <nav>
-            <ul class="nav pull-right">
+            <i class="mobile-menu fa fa-bars pull-right show-xs"></i>
+            <ul class="nav pull-right hide-xs">
                 <% if signed_in? %>
                     <li><%= link_to 'Write Your Story', new_story_path, class: "btn" %></li>
                     <li class="marginLeft avatar">
                         <%= link_to(current_user) do %>
                             <%= gravatar_for current_user %>
-                            <span class="hide-xs"><%= current_user.name %></span>
+                            <span><%= current_user.name %></span>
                         <% end %>
                     </li>
                     <!-- <li class="marginLeft">

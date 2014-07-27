@@ -862,9 +862,15 @@ th {
   }
 }
 
+.show-xs {
+    display: none;
+}
 
-@media (max-width: 520px) {
+@media (max-width: 767px) {
     .hide-xs {
         display: none;
+    }
+    .show-xs {
+        display: block;
     }
 }
