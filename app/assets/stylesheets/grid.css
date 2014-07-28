@@ -874,3 +874,8 @@ th {
         display: block;
     }
 }
+
+.textCenter {
+    display: block;
+    text-align: center;
+}

@@ -237,6 +237,30 @@ textarea {
     color: #d14747;
 }
 
+/* Hero */
+
+.heroImg {
+    width: 100%;
+    margin-top: -41px;
+    background: url('/images/mockimage_5.jpg') no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    h1 {
+        padding-top: 40px;
+        font-weight: bold;
+        opacity: 0.9;
+        span {
+            color: #d14747;
+            display: block;
+            text-align: center;
+            font-size: 60px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
+        }
+    }
+}
 
 /*remove later */
 pre {
