@@ -94,7 +94,7 @@
     <div class="container">
         <% if vote == true %>
             <% if @story.timeLeft != false %>
-                <p class="pull-right clock"><span id="clock" data-time="<%= @story.timeLeft %>"></span> left</p>
+                <p class="pull-right clock"><span id="clock"><%= @story.timeLeft %></span> min left</p>
             <% end %>
             <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
             <ul>
@@ -105,7 +105,7 @@
                             <% if signed_in? %>
                                 <%= button_to 'Vote', upvote_chapter_path(chapter), method: :post, class: "pull-right btn btn-inverse" %>
                             <% else %>
-                            <%= link_to "Join to vote on your favorite", login_path, class: "btn btn-inverse" %>
+                            <%= link_to "Join to vote on your favorite", login_path, class: "pull-right secondaryLink" %>
                             <% end %>
                         </li>
                     <% end %>
@@ -114,7 +114,7 @@
         <% end %>
         <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false && signed_in? %>
             <% if @story.timeLeft != false %>
-                <p class="pull-right clock"><span id="clock" data-time="<%= @story.timeLeft %>"></span> left</p>
+                <p class="pull-right clock"><span id="clock"><%= @story.timeLeft %></span> min left</p>
             <% end %>
             <h2 class="chapterHeadline">New chapter</h2>
             <%= form_for([@story, @story.chapters.build]) do |f| %>

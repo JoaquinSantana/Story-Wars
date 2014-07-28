@@ -222,11 +222,11 @@ textarea {
     background-color: white;
 }
 
-.whitePageContainer a {
+.whitePageContainer a, .secondaryLink {
     color: #B32727;
 }
 
-.whitePageContainer a:hover {
+.whitePageContainer a:hover, .secondaryLink:hover {
     color: #d14747;
 }
 

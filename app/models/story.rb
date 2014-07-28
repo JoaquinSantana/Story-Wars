@@ -10,8 +10,8 @@ class Story < ActiveRecord::Base
         if (self.created_at > 16.hour.ago)
             timeLeft = ((Time.parse(DateTime.now.to_s) - Time.parse(self.created_at.to_s))/3600) - ((Time.parse(DateTime.now.to_s) - Time.parse(self.created_at.to_s))/3600).floor
             timeLeft = (60 - (60 * timeLeft)).ceil
-            timeLeft = Time.now + timeLeft.minutes
-            timeLeft = timeLeft.strftime("%Y/%m/%d %H:%M:%S")
+            #timeLeft = Time.now + timeLeft.minutes
+            #timeLeft = timeLeft.strftime("%Y/%m/%d %H:%M:%S")
         else 
             timeLeft = false
         end

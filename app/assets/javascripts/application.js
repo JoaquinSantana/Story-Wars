@@ -13,7 +13,5 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require jquery.countdown
-//= require initCountdown
 //= require menu
 //= require_tree .

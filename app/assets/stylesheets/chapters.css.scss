@@ -22,6 +22,9 @@
         margin: 0;
         margin-bottom: 10px;
     }
+    input[type="submit"].btn-inverse {
+        border: 2px solid #d14747;
+    }
 }
 
 @media (max-width: 991px) {
