@@ -5,11 +5,16 @@
 .voteChapter-container {
     background-color: white;
     float: left;
-    width: 50%;
+    width: 49%;
+    margin-right: 2%;
+    height: 300px;
     padding: 20px;
     margin-bottom: 30px;
     border-radius: 3px;
     list-style-type: none;
+    &:nth-of-type(even) {
+        margin-right: 0;
+    }
     span {
         color: black;
     }
@@ -19,9 +24,10 @@
     }
 }
 
-@media (max-width: 767px) {
+@media (max-width: 991px) {
     .voteChapter-container {
         float: left;
+        height: auto;
         width: 100%;
     }
 }
