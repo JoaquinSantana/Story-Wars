@@ -29,13 +29,14 @@
 }
 
 .storyTitle {
+    text-align: center;
+    text-decoration: underline;
     color: black;
-    span {
-        position: relative;
-        margin-top: 16px;
-        float: right;
+}
+
+.storyContainer {
+    h3 {
         color: black;
-        margin-bottom: 20px;
     }
 }
 
@@ -49,6 +50,17 @@
     margin-top: 0;
 }
 
+.storyList {
+    float: left;
+    width: 100%;
+    list-style-type: none;
+    li {
+        float: left;
+        width: 100%;
+        border-top: 1px solid #c6c6c6;
+        padding-top: 30px;
+    }
+}
 
 @media (max-width: 520px) {
     .primaryList {
@@ -61,7 +73,6 @@
             }
         }
     }
-
     .storyTitle {
         float: left;
         display: block;
@@ -75,4 +86,8 @@
         font-size: 16px;
         line-height: 20px;
     }
+}
+
+.clock {
+    margin-top: 9px;
 }

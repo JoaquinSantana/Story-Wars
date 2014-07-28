@@ -51,21 +51,19 @@
 <div class="pageContainer whitePageContainer">
     <div class="container">  
         <p id="notice"><%= notice %></p>
-        <h1 class="storyTitle">
-            <%= @story.title %>
-            <span>
-                Chapter 1 by <%= link_to(@story.user) do %>
-                    <%= @story.user.name %>
-                <% end %>
-            </span>
-        </h1>
+        <h1 class="storyTitle"><%= @story.title %></h1>
+        <h4 class="chapterInfo">
+            Chapter 1 by <%= link_to(@story.user) do %>
+                <%= @story.user.name %>
+            <% end %>
+        </h4>
         <p class="storyContent"><%= @story.content %></p>
 
         <% maxVotes = 0 %>
         <% chosenChapterRound = "" %>
         <% chosenChapters = [] %>
         <%-#= time_ago_in_words(@story.created_at) -%>
-        <div>
+        <ul class="storyList">
             <% @story.chapters.each do |chapter| %>
                 <% if round.to_s != chapter.round %>
                     <% if chosenChapterRound != chapter.round %>
@@ -81,49 +79,50 @@
             <% end %>
             <% chosenChapters.each do |chosenChapter| %>
                 <% if chosenChapter.nil? == false %>
-                    <span class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.authorname %></a></span>
-                    <p class="storyContent"><%= chosenChapter.body %></p>
+                    <li>
+                        <h4 class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.authorname %></a></h4>
+                        <p class="storyContent"><%= chosenChapter.body %></p>
+                    </li>
                 <% end %>
             <% end %>
-        </div>
+        </ul>
 
     </div>
 </div>
 
 <div class="contentContainer">
     <div class="container">
-        <%= @story.timeLeft %>
-        <% if @story.timeLeft != false %>
-            Time left:
-            <div id="clock" data-time="<%= @story.timeLeft %>"></div>
-        <% end %>
         <% if vote == true %>
-            <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
-            <% @story.chapters.each do |chapter| %>
-                <% if round.to_s == chapter.round %>
-                    <div class="voteChapter-container">
-                        <p class="voteChapter-content" style="float: left; width: 100%"><%= chapter.body %></p>
-                    
-                        <span class="pull-left"><%= pluralize(chapter.votes.count, "vote") %></span> 
-
-                        <% if signed_in? %>
-                            <%= button_to 'Vote', upvote_chapter_path(chapter), method: :post, class: "pull-left btn btn-inverse" %>
-                        <% else %>
-                        <%= link_to "Join to vote on your favorite", login_path, class: "btn btn-inverse" %>
-                        <% end %>
-                    </div>
-                <% end %>
+            <% if @story.timeLeft != false %>
+                <p class="pull-right clock"><span id="clock" data-time="<%= @story.timeLeft %>"></span> left</p>
             <% end %>
+            <h2 class="chapterHeadline">Vote on chapter <%= round %></h2>
+            <ul>
+                <% @story.chapters.each do |chapter| %>
+                    <% if round.to_s == chapter.round %>
+                        <li class="voteChapter-container">
+                            <p class="voteChapter-content"><%= chapter.body %></p>
+                            <% if signed_in? %>
+                                <%= button_to 'Vote', upvote_chapter_path(chapter), method: :post, class: "pull-right btn btn-inverse" %>
+                            <% else %>
+                            <%= link_to "Join to vote on your favorite", login_path, class: "btn btn-inverse" %>
+                            <% end %>
+                        </li>
+                    <% end %>
+                <% end %>
+            </ul>
         <% end %>
         <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false && signed_in? %>
+            <% if @story.timeLeft != false %>
+                <p class="pull-right clock"><span id="clock" data-time="<%= @story.timeLeft %>"></span> left</p>
+            <% end %>
             <h2 class="chapterHeadline">New chapter</h2>
-            <p>In the next round, all readers can vote on their favorite chapter</p>
             <%= form_for([@story, @story.chapters.build]) do |f| %>
                 <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
                 <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.id %>">
                 <input id="chapter_authorname" name="chapter[authorname]" type="hidden" value="<%= current_user.name %>">
-                <%= f.text_area :body, placeholder: "Continue the story" %>
-                <div class="pull-right"><%= f.submit %></div>
+                <div class="field"><%= f.text_area :body, placeholder: "Continue the story" %></div>
+                <div class="pull-right marginBottom"><%= f.submit %></div>
             <% end %>
         <% end %>
     </div>

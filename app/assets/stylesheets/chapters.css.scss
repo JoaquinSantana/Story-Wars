@@ -5,14 +5,25 @@
 .voteChapter-container {
     background-color: white;
     float: left;
-    width: 100%;
-    padding: 5px 20px;
+    width: 50%;
+    padding: 20px;
     margin-bottom: 30px;
     border-radius: 3px;
+    list-style-type: none;
     span {
         color: black;
     }
+    p {
+        margin: 0;
+        margin-bottom: 10px;
+    }
+}
 
+@media (max-width: 767px) {
+    .voteChapter-container {
+        float: left;
+        width: 100%;
+    }
 }
 
 .voteChapter-content {
@@ -25,8 +36,9 @@
 
 .chapterInfo {
     color: black;
+    margin-top: 0;
     margin-bottom: 20px;
-    float: right;
+    float: left;
 }
 
 @media (max-width: 520px) {

@@ -3,7 +3,7 @@ class ChaptersController < ApplicationController
     def create
         @story = Story.find(params[:story_id])
         @chapter = @story.chapters.create(chapter_params)
-        redirect_to story_path(@story)
+        redirect_to story_path(@story), notice: 'New chapter created!'
     end
 
     def destroy
@@ -16,6 +16,7 @@ class ChaptersController < ApplicationController
     def upvote
         @chapter = Chapter.find(params[:id])
         @chapter.votes.create
+        flash[:notice] = 'Thank you for voting!'
         redirect_to(:back)
     end
  
