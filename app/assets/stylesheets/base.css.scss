@@ -51,6 +51,8 @@ ul {
     font-size: 17px;
     border-radius: 3px;
     border: none;
+    display: inline-block;
+    position: relative;
 }
 
 .btn:hover, input[type="submit"]:hover {
@@ -68,6 +70,7 @@ input[type="submit"].btn-inverse, .btn-inverse {
     background-color: #f35f5f;
     color: white;
 }
+
 
 /*Input*/
 
@@ -90,14 +93,15 @@ textarea {
     color: black;
 }
 
+
 /* Helpers */
 
 .pull-left {
-    float: left;
+    float: left !important;
 }
 
 .pull-right {
-    float: right;
+    float: right !important;
 }
 
 .marginLeft {
@@ -154,9 +158,9 @@ textarea {
                 float: left;
                 text-align: center;
                 margin-left: 0;
-                margin-top: 30px;
+                margin-top: 20px;
                 &.last {
-                    margin-bottom: 15px;
+                    margin-bottom: 5px;
                 }
             }
         }
@@ -177,7 +181,7 @@ textarea {
 
 .navbar ul li {
     float: left;
-    margin-top: 14px;
+    margin-top: 7px;
 }
 
 .logo {
@@ -191,7 +195,10 @@ textarea {
 
 .navbar .avatar {
     position: relative;
-    top: -2px;
+    top: 7px;
+    @media (max-width: 767px) {
+        top: 0px;
+    }
 }
 
 .navbar .avatar img {

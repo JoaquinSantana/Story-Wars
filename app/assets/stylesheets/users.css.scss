@@ -5,25 +5,31 @@
 .userProfile {
     float: left;
     width: 100%;
-    margin-bottom: 20px;
     img {
-        float: left;
+        display: inline-block;
         border-radius: 40px;
         margin-right: 15px;
     }
     .userHeadline {
-        margin-top: 7px;
-        float: left;
+        position: relative;
+        top: -15px;
+        display: inline-block;
         .userEmail {
-            float: left;
+            display: block;
         }
     }
     .userButtons {
-        margin-top: 30px;
+        margin-top: 20px;
     }
     .userImageBtn {
         top: 30px;
         position: relative;
     }
-
+    @media (max-width: 767px) {
+        .userButtons {
+            margin-top: 0px;
+            margin-bottom: 20px;
+            float: right;
+        }
+    }
 }
