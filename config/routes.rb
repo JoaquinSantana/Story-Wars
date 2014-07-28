@@ -3,15 +3,16 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :stories do
     resources :chapters
+    collection do
+        get 'all'
+        get 'newest'
+    end
   end
   resources :chapters do
     member do
       post 'upvote'
     end
   end
-  get 'static_pages/home'
-
-  get 'static_pages/help'
 
   root 'stories#index'
 

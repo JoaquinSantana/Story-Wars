@@ -4,7 +4,16 @@ class StoriesController < ApplicationController
   # GET /stories
   # GET /stories.json
   def index
-    @stories = Story.all
+    # @stories = Story.all
+    @stories = Story.most_voted
+  end
+
+  def all
+    @all_stories = Story.most_voted
+  end
+
+  def newest
+    @newest_stories = Story.all
   end
 
   # GET /stories/1

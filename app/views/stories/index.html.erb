@@ -1,10 +1,10 @@
 <div class="pageContainer">
     <div class="container">
-        <!-- <h1>Listing stories</h1>
-        <h3>Fixa sorteringen med javascript, ng-table kanske eller något enklare. Sortera på votes!</h3> -->
-
         <ul class="primaryList">
-            <% @stories.each do |story| %>
+            <% @stories.each_with_index do |story, index| %>
+                <% if index > 7 %>
+                    <% break %>
+                <% end %>
                 <li>
                     <%= link_to(story, class: "primaryHeadline") do %>
                         <span><%= story.title %></span>
@@ -12,6 +12,8 @@
                 </li>
             <% end %>
         </ul>
+        <%= link_to "Newest stories", { :controller => "stories", :action => "newest" }, :class => "pull-right marginTop marginBottom marginLeft btn" %>
+        <%= link_to "All stories", { :controller => "stories", :action => "all" }, :class => "pull-right marginTop marginBottom btn btn-inverse" %>
     </div>
 </div>
 

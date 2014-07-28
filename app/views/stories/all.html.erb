@@ -1,0 +1,14 @@
+<div class="pageContainer">
+    <div class="container">
+        <ul class="primaryList">
+            <% @all_stories.each do |story| %>
+                <li>
+                    <%= link_to(story, class: "primaryHeadline") do %>
+                        <span><%= story.title %></span>
+                    <% end %>
+                </li>
+            <% end %>
+        </ul>
+        <%= link_to "Back to most popular", { :controller => "stories", :action => "index" }, :class => "pull-right marginTop marginBottom btn" %>
+    </div>
+</div>
