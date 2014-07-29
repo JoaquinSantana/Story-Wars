@@ -20,6 +20,9 @@ class ChaptersController < ApplicationController
             flash[:notice] = 'Thank you for voting!'
             redirect_to(:back)
             session[:has_counted_view] = true
+        else 
+            flash[:notice] = 'You have already voted for this chapter'
+            redirect_to(:back)
         end
     end
  
