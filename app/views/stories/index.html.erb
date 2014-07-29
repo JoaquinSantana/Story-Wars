@@ -13,9 +13,16 @@
                 <% if index > 7 %>
                     <% break %>
                 <% end %>
+                <% votes = 0 %>
+                <% story.chapters.each do |chapter| %>
+                    <% votes = votes + chapter.votes.count %>
+                <% end %>
                 <li>
                     <%= link_to(story, class: "primaryHeadline") do %>
                         <span><%= story.title %></span>
+                        <div class="extraInfo">
+                            <span><%= votes * 10 %> p</span>
+                        </div>
                     <% end %>
                 </li>
             <% end %>

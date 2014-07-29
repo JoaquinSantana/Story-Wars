@@ -13,6 +13,16 @@
             span {
                 font-size: 38px;
             }
+            .extraInfo {
+                float: right;
+                span {
+                    padding-top: 17px;
+                    font-weight: normal;
+                    text-align: right;
+                    font-size: 16px;
+                    display: block;
+                }
+            }
         }
         a {
             display: block;

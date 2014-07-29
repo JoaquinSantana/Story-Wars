@@ -17,16 +17,6 @@ class Story < ActiveRecord::Base
         end
     end
 
-    def mostVotedOld
-        allStories = Story.all
-        allStories.each do |story|
-            votes = 0
-            story.chapters.each do |chapter|
-                votes = votes + chapter.votes.count
-            end
-        end
-    end
-
     def self.most_voted
         Story.all.sort_by do |story|
             story.chapters.map do |chapter| 
