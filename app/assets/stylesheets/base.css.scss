@@ -252,10 +252,10 @@ textarea {
         -o-background-size: cover;
         background-size: cover;
         padding-top: 40px;
-        padding-bottom: 40px;
+        padding-bottom: 100px;
         h1 {
             padding-top: 20px;
-            margin-bottom: 240px;
+            margin-bottom: 40px;
             font-weight: bold;
             opacity: 0.9;
             color: #303030;
@@ -267,6 +267,10 @@ textarea {
                 padding-bottom: 20px;
             }
         }
+    }
+    @media (min-width: 1441px) {
+        padding-top: 100px;
+        padding-bottom: 120px;
     }
 }
 
