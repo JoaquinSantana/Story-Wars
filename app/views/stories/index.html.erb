@@ -3,7 +3,7 @@
         <div class="heroImg hide-xs">
             <div class="container">
                 <h1><span>Write your story</span><span>Read all kinds of stories</span><span>Vote to continue the story</span></h1>
-                <div class="textCenter"><%= link_to "Join now", login_path, class: "btn btn-inverse marginBottom" %></div>
+                <div class="textCenter"><%= link_to "Join now", signup_path, class: "btn btn-inverse marginBottom" %></div>
 
             </div>
         </div>
@@ -22,40 +22,6 @@
             <% end %>
         </ul>
         <%= link_to "Newest stories", { :controller => "stories", :action => "newest" }, :class => "pull-right marginTop marginBottom marginLeft btn" %>
-        <%= link_to "All stories", { :controller => "stories", :action => "all" }, :class => "pull-right marginTop marginBottom btn btn-inverse" %>
+        <%= link_to "All stories", { :controller => "stories", :action => "all" }, :class => "pull-right marginTop marginBottom btn" %>
     </div>
 </div>
-
-<!-- table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th>Votes</th>
-      <th colspan="4"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @stories.each do |story| %>
-        <% votes = 0 %>
-        <% story.chapters.each do |chapter| %>
-            <% votes = votes + chapter.votes.count %>
-        <% end %>
-        <tr>
-            <td><%= story.title %></td>
-            <td><%= story.user_id %></td>
-            <td><%= votes %></td>
-            <td><%= link_to 'Show', story %></td>
-            <td><%= link_to 'Edit', edit_story_path(story) %></td>
-            <td><%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Story', new_story_path %>
-
--->
