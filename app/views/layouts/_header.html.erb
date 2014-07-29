@@ -9,17 +9,17 @@
             <i class="mobile-menu fa fa-bars pull-right show-xs"></i>
             <ul class="nav pull-right hide-xs">
                 <% if signed_in? %>
-                    <% votes = 0 %>
+                    <% user_votes = 0 %>
                     <% current_user.stories.each do |story| %>
                         <% story.chapters.each do |chapter| %>
-                            <% votes = votes + chapter.votes.count %>
+                            <% user_votes = user_votes + chapter.votes.count %>
                         <% end %>
                     <% end %>
                     <li><%= link_to 'Write Your Story', new_story_path, class: "btn" %></li>
                     <li class="marginLeft avatar">
                         <%= link_to(current_user) do %>
                             <%= gravatar_for current_user %>
-                            <span><%= current_user.name %> (<%= votes %> p)</span>
+                            <span><%= current_user.name %> (<%= user_votes %> p)</span>
                         <% end %>
                     </li>
                     <!-- <li class="marginLeft">
