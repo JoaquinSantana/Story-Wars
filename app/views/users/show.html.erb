@@ -2,10 +2,10 @@
     <div class="container">    
         <p id="notice"><%= notice %></p>
 
-        <% votes = 0 %>
+        <% user_votes = 0 %>
         <% @user.stories.each do |story| %>
             <% story.chapters.each do |chapter| %>
-                <% votes = votes + chapter.votes.count %>
+                <% user_votes = user_votes + chapter.votes.count %>
             <% end %>
         <% end %>
         
@@ -21,9 +21,8 @@
             <div class="col-sm-8 col-xs-12">
                 <%= gravatar_for @user %>
                 <h1 class="userHeadline">
-                    <%= @user.name %> (<%= votes %> p)
+                    <%= @user.name %> (<%= user_votes %> p)
                     <span class="userEmail"><%= @user.email %></span>
-
                 </h1>
             </div>
         </div>
@@ -38,9 +37,16 @@
         
         <ul class="primaryList">
             <% @user.stories.each do |story| %>
+                <% votes = 0 %>
+                <% story.chapters.each do |chapter| %>
+                    <% votes = votes + chapter.votes.count %>
+                <% end %>
                 <li>
                     <%= link_to(story, class: "primaryHeadline") do %>
                         <span><%= story.title %></span>
+                        <div class="extraInfo">
+                            <span><%= votes * 10 %> p</span>
+                        </div>
                     <% end %>
                 </li>
             <% end %>
