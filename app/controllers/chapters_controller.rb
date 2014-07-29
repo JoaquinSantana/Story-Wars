@@ -14,10 +14,13 @@ class ChaptersController < ApplicationController
     end
 
     def upvote
-        @chapter = Chapter.find(params[:id])
-        @chapter.votes.create
-        flash[:notice] = 'Thank you for voting!'
-        redirect_to(:back)
+        if session[:has_counted_view] == nil
+            @chapter = Chapter.find(params[:id])
+            @chapter.votes.create
+            flash[:notice] = 'Thank you for voting!'
+            redirect_to(:back)
+            session[:has_counted_view] = true
+        end
     end
  
     private
