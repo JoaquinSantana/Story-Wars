@@ -87,15 +87,6 @@
             }
         }
     }
-    .storyTitle {
-        float: left;
-        display: block;
-        margin-bottom: 0px;
-        span {
-            float: left;
-            display: block;
-        } 
-    }
     .storyContent {
         font-size: 16px;
         line-height: 20px;
@@ -107,7 +98,6 @@
 }
 
 .storySocial-info {
-    padding: 10px 0;
     margin-bottom: 15px;
     i {
         font-size: 40px;
