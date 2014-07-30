@@ -45,7 +45,7 @@
                     <%= link_to(story, class: "primaryHeadline") do %>
                         <span><%= story.title %></span>
                         <div class="extraInfo">
-                            <span><%= votes * 10 %> p</span>
+                            <span><%= votes %>/<%= votes * 10 %> p</span>
                         </div>
                     <% end %>
                 </li>
