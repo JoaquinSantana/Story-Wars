@@ -86,6 +86,11 @@
                 <% end %>
             <% end %>
         </ul>
+        
+        <div class="col-xs-12 storySocial-info">
+            <a target="_blank" href="http://twitter.com/share?text=Check%20out%20this%20story" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
+            <a target="_blank" href="http://www.facebook.com/sharer.php?u=<%= request.original_url %>" title="Share this story on Facebook"><i class="fa fa-facebook-square"></i></a>
+        </div>
 
     </div>
 </div>
@@ -105,24 +110,28 @@
                             <% if signed_in? %>
                                 <%= button_to 'Vote', upvote_chapter_path(chapter), method: :post, class: "pull-right btn btn-inverse" %>
                             <% else %>
-                            <%= link_to "Join to vote on your favorite", login_path, class: "pull-right secondaryLink" %>
+                                <%= link_to "Login to vote on your favorite", login_path, class: "pull-right secondaryLink" %>
                             <% end %>
                         </li>
                     <% end %>
                 <% end %>
             </ul>
         <% end %>
-        <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false && signed_in? %>
+        <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false %>
             <% if @story.timeLeft != false %>
                 <p class="pull-right clock"><span id="clock"><%= @story.timeLeft %></span> min left</p>
             <% end %>
             <h2 class="chapterHeadline">New chapter</h2>
-            <%= form_for([@story, @story.chapters.build]) do |f| %>
-                <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
-                <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.id %>">
-                <input id="chapter_authorname" name="chapter[authorname]" type="hidden" value="<%= current_user.name %>">
-                <div class="field"><%= f.text_area :body, placeholder: "Continue the story" %></div>
-                <div class="pull-right marginBottom"><%= f.submit %></div>
+            <% if signed_in? %>
+                <%= form_for([@story, @story.chapters.build]) do |f| %>
+                    <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
+                    <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.id %>">
+                    <input id="chapter_authorname" name="chapter[authorname]" type="hidden" value="<%= current_user.name %>">
+                    <div class="field"><%= f.text_area :body, placeholder: "Continue the story" %></div>
+                    <div class="pull-right marginBottom"><%= f.submit %></div>
+                <% end %>
+            <% else %>
+                <%= link_to "Login to write the next chapter", login_path, class: "pull-right btn" %>
             <% end %>
         <% end %>
     </div>

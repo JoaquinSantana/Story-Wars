@@ -105,3 +105,14 @@
 .clock {
     margin-top: 9px;
 }
+
+.storySocial-info {
+    padding: 10px 0;
+    margin-bottom: 15px;
+    i {
+        font-size: 40px;
+        float: right;
+        color: $link-color;
+        margin-left: 10px;
+    }
+}
