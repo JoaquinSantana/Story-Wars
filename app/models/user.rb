@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+    has_many :votes, dependent: :destroy
+    has_many :upvoted_chapters, through: :votes, source: :chapter
     has_many :stories, dependent: :destroy
     before_save { self.email = email.downcase }
     before_create :create_remember_token

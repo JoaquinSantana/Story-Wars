@@ -134,5 +134,8 @@
                 <%= link_to "Login to write the next chapter", login_path, class: "pull-right btn" %>
             <% end %>
         <% end %>
+        <% if @story.created_at < 16.hour.ago %>
+            <h2 class="chapterHeadline textCenter">The End</h2>
+        <% end %>
     </div>
 </div>
