@@ -1,7 +1,7 @@
-<% if @story.created_at > 1.hour.ago %>
+<% if @story.created_at > 4.minutes.ago %>
     <% round = 2 %>
     <% vote = false %>
-<% elsif @story.created_at <= 1.hour.ago && @story.created_at > 2.hour.ago %>
+<% elsif @story.created_at <= 4.minutes.ago && @story.created_at > 2.hour.ago %>
     <% round = 2 %>
     <% vote = true %>
 <% elsif @story.created_at < 2.hour.ago && @story.created_at > 3.hour.ago %>
