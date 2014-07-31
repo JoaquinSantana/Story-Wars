@@ -90,11 +90,11 @@
         <div class="col-xs-12 storySocial-info">
             <% if @story.created_at > 16.hour.ago %>
                 Challenge your friends:
-                <a target="_blank" href="http://twitter.com/share?text=I%20would%20challenge%20you%20to%20a%20battle%20of%20wits,%20but%20I%20see%20you%20are%20unarmed!&url=<%= request.original_url %>" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
+                <a target="_blank" href="https://twitter.com/share?text=I%20would%20challenge%20you%20to%20a%20battle%20of%20wits,%20but%20I%20see%20you%20are%20unarmed!&url=<%= request.original_url %>" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
                 <a target="_blank" href="https://www.facebook.com/sharer.php?u=href=<%= request.original_url %>" title="Share this story on Facebook"><i class="fa fa-facebook-square"></i></a>
             <% else %>
                 Share this masterpiece:
-                <a target="_blank" href="http://twitter.com/share?text=The%masterpiece%is%complete!&url=<%= request.original_url %>" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
+                <a target="_blank" href="https://twitter.com/share?text=The%20masterpiece%20is%20complete!&url=<%= request.original_url %>" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
                 <a target="_blank" href="https://www.facebook.com/sharer.php?u=href=<%= request.original_url %>" title="Share this story on Facebook"><i class="fa fa-facebook-square"></i></a>
             <% end %>
         </div>
