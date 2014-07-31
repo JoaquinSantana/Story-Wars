@@ -57,7 +57,7 @@
                 <%= @story.user.name %>
             <% end %>
         </h4>
-        <p class="storyContent"><%= @story.content %></p>
+        <div class="storyContent"><%= simple_format(@story.content) %></div>
 
         <% maxVotes = 0 %>
         <% chosenChapterRound = "" %>
@@ -81,7 +81,7 @@
                 <% if chosenChapter.nil? == false %>
                     <li>
                         <h4 class="chapterInfo">Chapter <%= chosenChapter.round %> by <a href="/users/<%= chosenChapter.author %>"><%= chosenChapter.authorname %></a></h4>
-                        <p class="storyContent"><%= chosenChapter.body %></p>
+                        <div class="storyContent"><%= simple_format(chosenChapter.body) %></div>
                     </li>
                 <% end %>
             <% end %>
