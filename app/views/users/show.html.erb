@@ -1,12 +1,17 @@
 <div class="pageContainer">
     <div class="container">    
         <p id="notice"><%= notice %></p>
-
+        
+        <%# This should be moved to a model %>
         <% user_votes = 0 %>
         <% @user.stories.each do |story| %>
             <% story.chapters.each do |chapter| %>
                 <% user_votes = user_votes + chapter.votes.count %>
             <% end %>
+        <% end %>
+
+        <% @user.chapters.each do |chapter| %>
+            <% user_votes = user_votes + chapter.votes.count %>
         <% end %>
         
         <div class="userProfile">
@@ -51,11 +56,15 @@
                 </li>
             <% end %>
         </ul>
-
-
-        <ul class="primaryList">
+        
+        <ul class="pull-left col-xs-12 marginTop--double">
             <% @user.chapters.each do |chapter| %>
-                <li><h1>hej</h1></li>
+                <li class="voteChapter-container">
+                    <article class="voteChapter-content"><%= simple_format(chapter.body) %>
+                        <%= link_to "Show story", story_path(chapter.story), :class => "secondaryLink" %>
+                        <span class="pull-right"><%= chapter.votes.count %> p</span>
+                    </article>
+                </li>
             <% end %>
         </ul>
 

@@ -1,3 +1,4 @@
+<%# This should be redone and should be moved to a model %>
 <% if @story.created_at > 1.hour.ago %>
     <% round = 2 %>
     <% vote = false %>
@@ -135,6 +136,7 @@
                     <input id="chapter_round" name="chapter[round]" type="hidden" value="<%= round %>">
                     <input id="chapter_author" name="chapter[author]" type="hidden" value="<%= current_user.id %>">
                     <input id="chapter_authorname" name="chapter[authorname]" type="hidden" value="<%= current_user.name %>">
+                    <input id="chapter_user_id" name="chapter[user_id]" type="hidden" value="<%= current_user.id %>">
                     <div class="field"><%= f.text_area :body, placeholder: "Continue the story" %></div>
                     <div class="pull-right marginBottom"><%= f.submit %></div>
                 <% end %>

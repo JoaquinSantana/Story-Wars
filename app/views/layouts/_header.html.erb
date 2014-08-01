@@ -9,11 +9,15 @@
             <i class="mobile-menu fa fa-bars pull-right show-xs"></i>
             <ul class="nav pull-right hide-xs">
                 <% if signed_in? %>
+                    <%# This should be moved to a model %>
                     <% user_votes = 0 %>
                     <% current_user.stories.each do |story| %>
                         <% story.chapters.each do |chapter| %>
                             <% user_votes = user_votes + chapter.votes.count %>
                         <% end %>
+                    <% end %>
+                    <% current_user.chapters.each do |chapter| %>
+                        <% user_votes = user_votes + chapter.votes.count %>
                     <% end %>
                     <li><%= link_to 'Write your story', new_story_path, class: "btn" %></li>
                     <li class="marginLeft avatar">
