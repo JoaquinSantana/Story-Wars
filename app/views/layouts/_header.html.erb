@@ -15,7 +15,7 @@
                             <% user_votes = user_votes + chapter.votes.count %>
                         <% end %>
                     <% end %>
-                    <li><%= link_to 'Write Your Story', new_story_path, class: "btn" %></li>
+                    <li><%= link_to 'Write your story', new_story_path, class: "btn" %></li>
                     <li class="marginLeft avatar">
                         <%= link_to(current_user) do %>
                             <%= gravatar_for current_user %>
@@ -27,7 +27,7 @@
                     </li> -->
 
                 <% else %>
-                    <li><%= link_to 'Write Your Story', login_path, class: "btn" %></li>
+                    <li><%= link_to 'Write your story', new_story_path, class: "btn" %></li>
                     <li class="marginLeft last"><%= link_to "Login", login_path, class: "btn btn-inverse" %></li>
                 <% end %>
             </ul>

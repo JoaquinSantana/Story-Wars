@@ -1,7 +1,13 @@
-<div class="pageContainer">
-    <div class="container">  
-        <h1>New story</h1>
+<% if signed_in? %>
+    <div class="pageContainer">
+        <div class="container">  
+            <h1>New story</h1>
 
-        <%= render 'form' %>
+            <%= render 'form' %>
+        </div>
     </div>
-</div>
+<% else %>
+    <script type="text/javascript">
+        window.location.href="/login"
+    </script>
+<% end %>

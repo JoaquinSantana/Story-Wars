@@ -1,4 +1,5 @@
 class StoriesController < ApplicationController
+
   before_action :set_story, only: [:show, :edit, :update, :destroy]
 
   # GET /stories
@@ -23,7 +24,7 @@ class StoriesController < ApplicationController
 
   # GET /stories/new
   def new
-    @story = Story.new
+        @story = Story.new
   end
 
   # GET /stories/1/edit

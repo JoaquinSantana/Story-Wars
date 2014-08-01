@@ -1,6 +1,10 @@
+<% if current_user.is_admin == true %>
 <h1>Editing story</h1>
 
 <%= render 'form' %>
 
 <%= link_to 'Show', @story %> |
 <%= link_to 'Back', stories_path %>
+<% else %>
+Not allowed to edit
+<% end %>

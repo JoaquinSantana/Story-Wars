@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
     has_many :votes, dependent: :destroy
     has_many :upvoted_chapters, through: :votes, source: :chapter
+    has_many :chapters, dependent: :destroy
     has_many :stories, dependent: :destroy
     before_save { self.email = email.downcase }
     before_create :create_remember_token
@@ -15,6 +16,10 @@ class User < ActiveRecord::Base
 
     def User.digest(token)
         Digest::SHA1.hexdigest(token.to_s)
+    end
+
+    def is_admin
+        is_admin = false;
     end
 
     private

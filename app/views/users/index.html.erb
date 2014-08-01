@@ -1,29 +1,13 @@
 <div class="pageContainer">
     <div class="container">    
-        <h1>Listing users</h1>
-
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Name</th>
-              <th>Email</th>
-              <th colspan="4"></th>
-            </tr>
-          </thead>
-
-          <tbody>
+        <ul class="primaryList">
             <% @users.each do |user| %>
-              <tr>
-                <td><%= gravatar_for user %></td>
-                <td><%= user.name %></td>
-                <td><%= user.email %></td>
-                <td><%= link_to 'Show', user %></td>
-              </tr>
+                <li>
+                    <%= link_to(user, class: "primaryHeadline") do %>
+                        <span><%= user.name %></span>
+                    <% end %>
+                </li>
             <% end %>
-          </tbody>
-        </table>
-
-
+        </ul>
     </div>
 </div>
