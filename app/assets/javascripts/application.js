@@ -13,5 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require readmore.min
 //= require menu
 //= require_tree .
