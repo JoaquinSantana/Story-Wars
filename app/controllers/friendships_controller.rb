@@ -24,6 +24,7 @@ class FriendshipsController < ApplicationController
   # POST /friendships
   # POST /friendships.json
   def create
+
     @friendship = current_user.friendships.build(:friend_id => params[:friend_id])
 
     respond_to do |format|
@@ -60,7 +61,7 @@ class FriendshipsController < ApplicationController
     @friendship.destroy
     flash[:notice] = "Removed friendship."
     respond_to do |format|
-        format.html { redirect_to current_user, notice: 'Removed friend' }
+        format.html { redirect_to :back, notice: 'Removed friend' }
         format.json { head :no_content }
     end
   end
