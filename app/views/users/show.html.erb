@@ -60,7 +60,7 @@
         <ul class="pull-left col-xs-12 marginTop--double">
             <% @user.chapters.each do |chapter| %>
                 <li class="voteChapter-container">
-                    <article class="voteChapter-content"><%= simple_format(chapter.body) %>
+                    <article class="voteChapter-content" data-readmore="Read more"><%= simple_format(chapter.body) %>
                         <%= link_to "Show story", story_path(chapter.story), :class => "secondaryLink" %>
                         <span class="pull-right"><%= chapter.votes.count %> p</span>
                     </article>

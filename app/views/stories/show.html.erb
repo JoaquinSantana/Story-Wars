@@ -114,7 +114,7 @@
                 <% @story.chapters.each do |chapter| %>
                     <% if round.to_s == chapter.round %>
                         <li class="voteChapter-container">
-                            <article class="voteChapter-content"><%= simple_format(chapter.body) %>
+                            <article class="voteChapter-content" data-readmore="Read more and vote"><%= simple_format(chapter.body) %>
                             <% if signed_in? %>
                                 <%= button_to 'Vote', upvote_chapter_path(chapter), method: :post, class: "pull-right btn btn-inverse" %>
                             <% else %>
