@@ -39,7 +39,7 @@
                 <%= render @user.stories %>
             </ol>
         <% end %> -->
-        
+            
         <ul class="primaryList">
             <% @user.stories.each do |story| %>
                 <% votes = 0 %>
@@ -56,17 +56,31 @@
                 </li>
             <% end %>
         </ul>
+        <div class="pull-left col-xs-12 marginTop">
+            <h2>Chapters</h2>
+            <ul>
+                <% @user.chapters.each do |chapter| %>
+                    <li class="voteChapter-container">
+                        <article class="voteChapter-content" data-readmore="Read more"><%= simple_format(chapter.body) %>
+                            <%= link_to "Show story", story_path(chapter.story), :class => "secondaryLink" %>
+                            <span class="pull-right"><%= chapter.votes.count %> p</span>
+                        </article>
+                    </li>
+                <% end %>
+            </ul>
+        </div>
         
-        <ul class="pull-left col-xs-12 marginTop--double">
-            <% @user.chapters.each do |chapter| %>
-                <li class="voteChapter-container">
-                    <article class="voteChapter-content" data-readmore="Read more"><%= simple_format(chapter.body) %>
-                        <%= link_to "Show story", story_path(chapter.story), :class => "secondaryLink" %>
-                        <span class="pull-right"><%= chapter.votes.count %> p</span>
-                    </article>
-                </li>
-            <% end %>
-        </ul>
+        <div class="pull-left col-xs-12 marginTop">
+            <h2>Friends</h2>
+            <ul class="simpleList">
+                <% @user.friends.each do |user| %>
+                    <li>
+                        <%= user.name %>
+                        (<%= link_to "remove", friendship_path(current_user.friendships.find_by_friend_id(user)), :method => :delete %>)
+                    </li>
+                <% end %>
+            </ul>
+        </div>
 
     </div>
 </div>

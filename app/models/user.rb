@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+    has_many :friendships
+    has_many :friends, through: :friendships
     has_many :votes, dependent: :destroy
     has_many :upvoted_chapters, through: :votes, source: :chapter
     has_many :chapters, dependent: :destroy

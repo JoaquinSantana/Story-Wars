@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140730111810) do
+ActiveRecord::Schema.define(version: 20140803143054) do
 
   create_table "chapters", force: true do |t|
     t.string   "round"
@@ -25,6 +25,13 @@ ActiveRecord::Schema.define(version: 20140730111810) do
   end
 
   add_index "chapters", ["story_id"], name: "index_chapters_on_story_id"
+
+  create_table "friendships", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "stories", force: true do |t|
     t.text     "content"

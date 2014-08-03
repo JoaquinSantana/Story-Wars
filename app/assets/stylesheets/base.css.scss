@@ -250,6 +250,13 @@ textarea {
     color: $primary-color;
 }
 
+@media (max-width: 520px) {
+    .pageContainer {
+        padding-top: 80px;
+    }
+
+}
+
 /* Footer */
 
 footer {
@@ -306,6 +313,21 @@ footer {
         }
         padding-top: 25px;
         padding-bottom: 80px;
+    }
+}
+
+/* Standard modules */
+
+.simpleList {
+    color: white;
+    padding-left: 20px;
+    &.largeList {
+        font-size: 26px;
+        line-height: 50px;
+        @media (max-width: 520px) {
+            font-size: 20px;
+            line-height: 30px;
+        }
     }
 }
 

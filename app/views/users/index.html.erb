@@ -5,6 +5,7 @@
                 <li>
                     <%= link_to(user, class: "primaryHeadline") do %>
                         <span><%= user.name %></span>
+                        <%= link_to "Add friend", friendships_path(:friend_id => user), :method => :post %>
                     <% end %>
                 </li>
             <% end %>
