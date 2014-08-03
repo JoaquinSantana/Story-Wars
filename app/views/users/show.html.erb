@@ -79,24 +79,24 @@
             </div>
         <% end %>
         
-        <div class="pull-left col-xs-12 marginTop">
-            <h2>Friends</h2>
-            <ul class="simpleList marginBottom">
-                <% @user.friends.each do |user| %>
-                    <li>
-                        <%= link_to(user, class: "primaryHeadline") do %>
-                            <span><%= user.name %></span>
-                        <% end %>
-                        <% if current_user == @user %>
-                            - <%= link_to "remove", friendship_path(current_user.friendships.find_by_friend_id(user)), :method => :delete %>
-                        <% end %>
-                    </li>
-                <% end %>
-            </ul>
-
-            <%= link_to "Find friends", users_path %>
-
-        </div>
+        <% if @user.friends.any? || current_user == @user %>
+            <div class="pull-left col-xs-12 marginTop">
+                <h2>Friends</h2>
+                <ul class="simpleList marginBottom">
+                    <% @user.friends.each do |user| %>
+                        <li>
+                            <%= link_to(user, class: "primaryHeadline") do %>
+                                <span><%= user.name %></span>
+                            <% end %>
+                            <% if current_user == @user %>
+                                - <%= link_to "remove", friendship_path(current_user.friendships.find_by_friend_id(user)), :method => :delete %>
+                            <% end %>
+                        </li>
+                    <% end %>
+                </ul>
+                <%= link_to "Find friends", users_path %>
+            </div>
+        <% end %>
 
     </div>
 </div>
