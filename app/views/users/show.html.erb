@@ -82,7 +82,7 @@
         <% end %>
         
         <% if @user.friends.any? || current_user == @user %>
-            <div class="pull-left col-xs-12 paddingTop borderTop">
+            <div class="pull-left col-xs-12 paddingTop borderTop marginBottom">
                 <h2>Friends</h2>
                 <ul class="simpleList marginBottom">
                     <% @user.friends.each do |user| %>
