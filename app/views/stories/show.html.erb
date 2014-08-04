@@ -60,10 +60,12 @@
         <%-#= time_ago_in_words(@story.created_at) -%>
         <ul class="storyList">
             <% @story.chapters.each do |chapter| %>
-                <% user = User.find(chapter.user_id) %>
-                <% if current_user != user && current_user.friendships.find_by_friend_id(user) %>
-                    <% if !friends.include?(user) %>
-                        <% friends << user %>
+                <% if signed_in? %>
+                    <% user = User.find(chapter.user_id) %>
+                    <% if current_user != user && current_user.friendships.find_by_friend_id(user) %>
+                        <% if !friends.include?(user) %>
+                            <% friends << user %>
+                        <% end %>
                     <% end %>
                 <% end %>
                 <% if round.to_s != chapter.round %>
