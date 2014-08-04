@@ -41,14 +41,8 @@
 <% elsif @story.created_at < 13.hour.ago && @story.created_at > 14.hour.ago %>
     <% round = 8 %>
     <% vote = true %>
-<% elsif @story.created_at < 14.hour.ago && @story.created_at > 15.hour.ago %>
-    <% round = 9 %>
-    <% vote = false %>
-<% elsif @story.created_at < 15.hour.ago && @story.created_at > 16.hour.ago %>
-    <% round = 9 %>
-    <% vote = true %>
 <% end %>
-
+<% friends = [] %>
 <div class="pageContainer whitePageContainer">
     <div class="container">  
         <p id="notice"><%= notice %></p>
@@ -66,6 +60,12 @@
         <%-#= time_ago_in_words(@story.created_at) -%>
         <ul class="storyList">
             <% @story.chapters.each do |chapter| %>
+                <% user = User.find(chapter.user_id) %>
+                <% if current_user != user && current_user.friendships.find_by_friend_id(user) %>
+                    <% if !friends.include?(user) %>
+                        <% friends << user %>
+                    <% end %>
+                <% end %>
                 <% if round.to_s != chapter.round %>
                     <% if chosenChapterRound != chapter.round %>
                         <% maxVotes = 0 %>
@@ -89,8 +89,12 @@
         </ul>
         
         <div class="col-xs-12 storySocial-info">
-            <% if @story.created_at > 16.hour.ago %>
-                Challenge your friends:
+            <% if @story.created_at > 14.hour.ago %>
+                <% if friends.any? %>
+                    Challenge more friends:
+                <% else %>
+                    Challenge your friends:
+                <% end %>
                 <a target="_blank" href="https://www.facebook.com/sharer.php?u=href=<%= request.original_url %>" title="Share this story on Facebook"><i class="fa fa-facebook-square"></i></a>
                 <a target="_blank" href="https://twitter.com/share?text=I%20would%20challenge%20you%20to%20a%20battle%20of%20wits,%20but%20I%20see%20you%20are%20unarmed!&url=<%= request.original_url %>" title="Share this story on Twitter"><i class="fa fa-twitter-square"></i></a>
             <% else %>
@@ -126,7 +130,7 @@
                 <% end %>
             </ul>
         <% end %>
-        <% if defined?(:round) && @story.created_at > 16.hour.ago && vote == false %>
+        <% if defined?(:round) && @story.created_at > 14.hour.ago && vote == false %>
             <% if @story.timeLeft != false %>
                 <p class="pull-right clock"><span id="clock"><%= @story.timeLeft %></span> min left</p>
             <% end %>
@@ -144,8 +148,47 @@
                 <%= link_to "Login to write the next chapter", login_path, class: "pull-right btn" %>
             <% end %>
         <% end %>
-        <% if @story.created_at < 16.hour.ago %>
+
+        <% if @story.created_at < 14.hour.ago %>
             <h2 class="chapterHeadline textCenter">The End</h2>
+            <% if friends.any? %>
+                <h3>Are you wittier than your friends?</h3>
+                <ul class="simpleList">
+                    <% friends.each do |friend| %>
+                        <li>
+                            <% currentUserVote = 0 %>
+                            <% current_user.chapters.each do |chapter| %>
+                                <% if chapter.story == @story %>
+                                <% currentUserVote = currentUserVote + chapter.votes.count %>
+                                <% end %>
+                            <% end %>
+                            <% friendVote = 0 %>
+                            <% friend.chapters.each do |chapter| %>
+                                <% if chapter.story == @story %>
+                                    <% friendVote = friendVote + chapter.votes.count %>
+                                <% end %>
+                            <% end %>
+                            
+                            <%= link_to(current_user) do %>
+                                <%= gravatar_for current_user %> <span class="gravatarLabel">You: <%= currentUserVote %> p</span>
+                            <% end %>
+                            <span class="marginLeft marginRight">vs</span>
+                            <%= link_to(friend) do %>
+                                <%= gravatar_for friend %> <span class="gravatarLabel"><%= friend.name %>: <%= friendVote %> p</span>
+                            <% end %>
+
+                            <% if currentUserVote > friendVote %>
+                                <span class="marginLeft">YES</span>
+                            <% elsif currentUserVote == friendVote %>
+                                <span class="marginLeft">Tie</span>
+                            <% else %>
+                                <span class="marginLeft">No...</span>
+                            <% end %>
+                        </li>
+                    <% end %>
+                </ul>
+            <% end %>
         <% end %>
+
     </div>
 </div>
