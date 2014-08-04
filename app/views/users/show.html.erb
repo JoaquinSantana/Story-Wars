@@ -14,16 +14,18 @@
             <% user_votes = user_votes + chapter.votes.count %>
         <% end %>
         
-        <div class="userProfile">
+        <div class="userProfile borderTop">
             <div class="col-sm-4 col-xs-12 pull-right">
                 <div class="userButtons pull-right">
-                    <% if current_user == @user %>  
-                        <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-inverse" %>
-                        <%= link_to "Logout", logout_path, method: "delete", class: "btn marginLeft" %>
-                    <% elsif current_user != @user && !current_user.friendships.find_by_friend_id(@user) %>
-                        <%= link_to "Add friend", friendships_path(:friend_id => @user), :method => :post, class: "btn" %>
-                    <% elsif current_user != @user && current_user.friendships.find_by_friend_id(@user) %>
-                        <%= link_to "Remove friend", friendship_path(current_user.friendships.find_by_friend_id(@user)), :method => :delete, class: "btn btn-inverse" %>
+                    <% if signed_in? %>
+                        <% if current_user == @user %>  
+                            <%= link_to 'Edit profile', edit_user_path(@user), class: "btn btn-inverse" %>
+                            <%= link_to "Logout", logout_path, method: "delete", class: "btn marginLeft" %>
+                        <% elsif current_user != @user && !current_user.friendships.find_by_friend_id(@user) %>
+                            <%= link_to "Add friend", friendships_path(:friend_id => @user), :method => :post, class: "btn" %>
+                        <% elsif current_user != @user && current_user.friendships.find_by_friend_id(@user) %>
+                            <%= link_to "Remove friend", friendship_path(current_user.friendships.find_by_friend_id(@user)), :method => :delete, class: "btn btn-inverse" %>
+                        <% end %>
                     <% end %>
                 </div>
             </div>
@@ -44,9 +46,9 @@
                 <%= render @user.stories %>
             </ol>
         <% end %> -->
-            
-        <ul class="primaryList">
-            <% if @user.stories.any? %>
+        <% if @user.stories.any? %>
+            <ul class="primaryList borderTop paddingTop marginBottom--double">
+                <h2 class="marginBottom">Stories</h2>
                 <% @user.stories.each do |story| %>
                     <% votes = 0 %>
                     <% story.chapters.each do |chapter| %>
@@ -61,10 +63,10 @@
                         <% end %>
                     </li>
                 <% end %>
-            <% end %>
-        </ul>
+            </ul>
+        <% end %>
         <% if @user.chapters.any? %>
-            <div class="pull-left col-xs-12 marginTop">
+            <div class="pull-left col-xs-12 paddingTop borderTop marginBottom--double">
                 <h2>Chapters</h2>
                 <ul>
                     <% @user.chapters.each do |chapter| %>
@@ -80,7 +82,7 @@
         <% end %>
         
         <% if @user.friends.any? || current_user == @user %>
-            <div class="pull-left col-xs-12 marginTop">
+            <div class="pull-left col-xs-12 paddingTop borderTop">
                 <h2>Friends</h2>
                 <ul class="simpleList marginBottom">
                     <% @user.friends.each do |user| %>

@@ -149,6 +149,29 @@ textarea {
     margin-bottom: 40px;
 }
 
+.paddingTop {
+    padding-top: 20px;
+}
+
+.paddingBottom {
+    padding-bottom: 20px;
+}
+
+.borderTop {
+    border-top: 8px solid $primary-color;
+}
+
+.borderTop--white {
+    border-top: 8px solid white;
+}
+
+.borderBottom {
+    border-bottom: 8px solid $primary-color;
+}
+
+.borderBottom--white {
+    border-bottom: 8px solid white;
+}
 
 /* Navbar */
 .navbar {
@@ -337,7 +360,7 @@ footer {
         top: 10px;
     }
     .gravatarLabel {
-        
+
     }
 }
 
