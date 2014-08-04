@@ -21,7 +21,7 @@ class User < ActiveRecord::Base
     end
 
     def is_admin
-        is_admin = false;
+        is_admin = false
     end
 
     private
