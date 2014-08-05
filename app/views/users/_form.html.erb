@@ -21,7 +21,7 @@
             <%= f.password_field :password, placeholder: "Password" %>
         </div>
         <div class="actions pull-right">
-            <%= f.submit "Join" %>
+            <%= f.submit params[:action] == 'new' ? "Join" : "Update" %>
         </div>
     </div>
 <% end %>
