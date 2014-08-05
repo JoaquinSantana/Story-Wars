@@ -17,10 +17,10 @@
     }
     .userHeadline {
         position: relative;
-        top: -15px;
+        top: -25px;
         display: inline-block;
         @media (max-width: 520px) {
-            top: -10px;
+            top: -18px;
             font-size: 18px;
         }
         .userEmail {
