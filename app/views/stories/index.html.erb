@@ -24,11 +24,7 @@
                             <span><%= votes %> p</span>
                         </div>
                     <% end %>
-                    <% if signed_in? %>
-                        <% if current_user.email == "johansson.joakim@gmail.com" %>
-                            <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
-                        <% end %>
-                    <% end %>
+
                 </li>
             <% end %>
         </ul>

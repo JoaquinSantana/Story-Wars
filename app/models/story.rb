@@ -7,9 +7,12 @@ class Story < ActiveRecord::Base
     validates :user_id, presence: true
 
     def timeLeft
-        if (self.created_at > 14.hour.ago)
+        if (self.created_at > 14.days.ago)
             timeLeft = ((Time.parse(DateTime.now.to_s) - Time.parse(self.created_at.to_s))/3600) - ((Time.parse(DateTime.now.to_s) - Time.parse(self.created_at.to_s))/3600).floor
             timeLeft = (60 - (60 * timeLeft)).ceil
+
+
+            # For the formated version that we don't right now
             #timeLeft = Time.now + timeLeft.minutes
             #timeLeft = timeLeft.strftime("%Y/%m/%d %H:%M:%S")
         else 
