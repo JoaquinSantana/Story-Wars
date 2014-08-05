@@ -24,12 +24,12 @@
                             <span><%= votes %> p</span>
                         </div>
                     <% end %>
+                    <%# if signed_in? %>
+                        <%# if current_user.email == "johansson.joakim@gmail.com" %>
+                            <%#= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
+                        <%# end %>
+                    <%# end %>
                 </li>
-                <% if signed_in? %>
-                    <% if current_user.email == "johansson.joakim@gmail.com" %>
-                        <%= link_to 'Destroy', story, method: :delete, data: { confirm: 'Are you sure?' } %>
-                    <% end %>
-                <% end %>
             <% end %>
         </ul>
         <%= link_to "Newest stories", { :controller => "stories", :action => "newest" }, :class => "pull-right marginTop marginBottom marginLeft btn" %>
