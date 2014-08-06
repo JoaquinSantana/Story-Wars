@@ -15,6 +15,7 @@ group :test do
   gem 'minitest'
   gem 'factory_girl_rails'
   gem 'simplecov', :require => false
+  gem 'faker'
 end
 
 # Use SCSS for stylesheets

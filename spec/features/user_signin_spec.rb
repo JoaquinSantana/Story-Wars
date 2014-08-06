@@ -1,17 +1,16 @@
 require 'spec_helper'
 
 feature 'Signin' do
-
+	let!(:user) { FactoryGirl.create(:user) }
 	before :each do
-		@user = FactoryGirl.create(:user)
 		visit '/'
 		click_link 'Login'
 	end
 
 	scenario 'Correnct login via form' do
 
-		fill_in('Email', with: @user.email)
-		fill_in('Password', with: @user.password)
+		fill_in('Email', with: user.email)
+		fill_in('Password', with: user.password)
 		click_button "Login"
 
 		expect(page).to have_content("Signed in successfully")
