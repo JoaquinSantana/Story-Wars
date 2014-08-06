@@ -14,6 +14,7 @@ class SessionsController < ApplicationController
             #redirect_to user
             path = cookies[:return_to]
             cookies.delete(:return_to)
+            flash[:success] = "Signed in successfully"
             redirect_to path
             
         else
